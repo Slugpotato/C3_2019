@@ -33,7 +33,11 @@ def main(argv=None):
             # Make sure input is in range of acceptable numbers
             if sequence_num in [1, 2, 3, 4]:
                 sequence_num = sequence_num - 1
-                check_sequence(lst_of_sequences[sequence_num])
+
+                status = check_sequence(lst_of_sequences[sequence_num])
+
+                if status == 'exit':
+                    break
 
         except (ValueError, IndexError):
             pass
@@ -57,6 +61,12 @@ def check_sequence(sequence):
         # Loop until coordinate is entered in the correct format
         while was_correct_format is False:
             given_coors = input("Please enter the robot's current coordinates in the following format: x,y \n")
+
+            if given_coors == 'exit':
+                return 'exit'
+
+            if given_coors == 'back':
+                return 'back'
 
             print('Entered: ', given_coors)
 
@@ -85,7 +95,7 @@ def check_sequence(sequence):
 
     print("Finished sequence!! \n")
 
-
+    return "Success"
 
 
 
